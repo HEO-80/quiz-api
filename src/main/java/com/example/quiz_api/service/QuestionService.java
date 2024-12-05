@@ -3,9 +3,9 @@ package com.example.quiz_api.service;
 import com.example.quiz_api.dto.QuestionDTO;
 import com.example.quiz_api.entity.Question;
 import com.example.quiz_api.repository.QuestionRepository;
-import com.example.quiz_api.exception.ResourceNotFoundException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import com.example.quiz_api.exception.ResourceNotFoundException;
 
 import java.util.List;
 import java.util.stream.Collectors;
@@ -17,10 +17,7 @@ public class QuestionService {
     private QuestionRepository questionRepository;
 
     public List<QuestionDTO> getAllQuestions() {
-        return questionRepository.findAll()
-                .stream()
-                .map(this::convertToDTO)
-                .collect(Collectors.toList());
+        return questionRepository.findAll().stream().map(this::convertToDTO).collect(Collectors.toList());
     }
 
     public QuestionDTO getQuestionById(Long id) {
@@ -58,7 +55,7 @@ public class QuestionService {
         questionRepository.deleteById(id);
     }
 
-    // Métodos de conversión entre Question y QuestionDTO
+    // Métodos para convertir entre Question y QuestionDTO
     private QuestionDTO convertToDTO(Question question) {
         QuestionDTO questionDTO = new QuestionDTO();
         questionDTO.setId(question.getId());
