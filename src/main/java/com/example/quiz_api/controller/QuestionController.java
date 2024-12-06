@@ -1,6 +1,6 @@
 package com.example.quiz_api.controller;
 
-import com.example.quiz_api.entity.Question;
+import com.example.quiz_api.dto.QuestionDTO;
 import com.example.quiz_api.service.QuestionService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -16,26 +16,29 @@ public class QuestionController {
     private QuestionService questionService;
 
     @GetMapping
-    public ResponseEntity<List<Question>> getAllQuestions() {
-        List<Question> questions = questionService.getAllQuestions();
+    public ResponseEntity<List<QuestionDTO>> getAllQuestions() {
+        List<QuestionDTO> questions = questionService.getAllQuestions();
         return new ResponseEntity<>(questions, HttpStatus.OK);
     }
 
     @GetMapping("/{id}")
-    public ResponseEntity<Question> getQuestionById(@PathVariable Long id) {
-        Question question = questionService.getQuestionById(id);
+    public ResponseEntity<QuestionDTO> getQuestionById(@PathVariable Long id) {
+        QuestionDTO question = questionService.getQuestionById(id);
         return new ResponseEntity<>(question, HttpStatus.OK);
     }
 
     @PostMapping
-    public ResponseEntity<Question> createQuestion(@RequestBody Question question) {
-        Question createdQuestion = questionService.createQuestion(question);
+    public ResponseEntity<QuestionDTO> createQuestion(@RequestBody QuestionDTO questionDTO) {
+        if (questionDTO.getQuestionText() == null || questionDTO.getQuestionText().isEmpty()) {
+            return ResponseEntity.badRequest().body(null);
+        }
+        QuestionDTO createdQuestion = questionService.createQuestion(questionDTO);
         return new ResponseEntity<>(createdQuestion, HttpStatus.CREATED);
     }
 
     @PutMapping("/{id}")
-    public ResponseEntity<Question> updateQuestion(@PathVariable Long id, @RequestBody Question question) {
-        Question updatedQuestion = questionService.updateQuestion(id, question);
+    public ResponseEntity<QuestionDTO> updateQuestion(@PathVariable Long id, @RequestBody QuestionDTO questionDTO) {
+        QuestionDTO updatedQuestion = questionService.updateQuestion(id, questionDTO);
         return new ResponseEntity<>(updatedQuestion, HttpStatus.OK);
     }
 

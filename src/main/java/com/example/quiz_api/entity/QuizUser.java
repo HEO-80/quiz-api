@@ -2,11 +2,15 @@ package com.example.quiz_api.entity;
 
 import jakarta.persistence.*;
 import lombok.Data;
-
 import java.time.LocalDateTime;
+import lombok.AllArgsConstructor;
+import lombok.NoArgsConstructor;
 
-@Data
+
 @Entity
+@Data
+@AllArgsConstructor
+@NoArgsConstructor
 @Table(name = "quiz_users")
 public class QuizUser {
     @Id
