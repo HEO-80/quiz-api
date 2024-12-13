@@ -12,6 +12,7 @@ public class QuizQuestion {
     @SequenceGenerator(name = "quiz_questions_id_seq", sequenceName = "quiz_questions_id_seq", allocationSize = 1)
     private Long id;
 
+
     @ManyToOne
     @JoinColumn(name = "quiz_id", nullable = false)
     private QuizUser quiz;

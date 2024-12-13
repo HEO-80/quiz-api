@@ -3,8 +3,8 @@ package com.example.quiz_api.entity;
 import jakarta.persistence.*;
 import lombok.Data;
 
-@Data
 @Entity
+@Data
 @Table(name = "user_answers")
 public class UserAnswer {
     @Id
@@ -26,5 +26,6 @@ public class UserAnswer {
 
     private String userAnswer;
 
-    private Boolean isCorrect;
+    @Column(name = "is_correct")
+    private Boolean isCorrect; // Usamos Boolean para manejar el valor 0 y 1 como falso/verdadero
 }

@@ -10,7 +10,7 @@ import org.springframework.web.bind.annotation.*;
 import java.util.List;
 
 @RestController
-@RequestMapping("/api/quizzes")
+@RequestMapping("/api/quiz-users")
 public class QuizUserController {
     @Autowired
     private QuizUserService quizUserService;
@@ -27,10 +27,16 @@ public class QuizUserController {
         return new ResponseEntity<>(quizUser, HttpStatus.OK);
     }
 
+//    @PostMapping
+//    public ResponseEntity<QuizUserDTO> createQuiz(@RequestBody QuizUserDTO quizUserDTO) {
+//        QuizUserDTO createdQuizUser = quizUserService.createQuiz(quizUserDTO);
+//        return new ResponseEntity<>(createdQuizUser, HttpStatus.CREATED);
+//    }
+
     @PostMapping
     public ResponseEntity<QuizUserDTO> createQuiz(@RequestBody QuizUserDTO quizUserDTO) {
-        QuizUserDTO createdQuizUser = quizUserService.createQuiz(quizUserDTO);
-        return new ResponseEntity<>(createdQuizUser, HttpStatus.CREATED);
+        QuizUserDTO createdQuiz = quizUserService.createQuiz(quizUserDTO);
+        return ResponseEntity.status(HttpStatus.CREATED).body(createdQuiz);
     }
 
     @PutMapping("/{id}")
