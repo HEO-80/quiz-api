@@ -31,6 +31,22 @@
 			<artifactId>hibernate-core</artifactId>
 			<version>6.6.2.Final</version>
 		</dependency>
+		<dependency>
+			<groupId>io.springfox</groupId>
+			<artifactId>springfox-swagger2</artifactId>
+			<version>3.0.0</version>
+		</dependency>
+
+		<dependency>
+			<groupId>io.springfox</groupId>
+			<artifactId>springfox-swagger-ui</artifactId>
+			<version>3.0.0</version>
+		</dependency>
+		<dependency>
+			<groupId>jakarta.validation</groupId>
+			<artifactId>jakarta.validation-api</artifactId>
+			<version>3.1.0</version> <!-- O la versión más reciente -->
+		</dependency>
 
 		<!-- Dependencia para conectar con Oracle -->
 		<dependency>
@@ -71,6 +87,8 @@
 			<artifactId>spring-boot-starter-security</artifactId>
 			<version>3.4.0</version> <!-- Asegúrate de usar la misma versión que el resto de las dependencias de Spring Boot -->
 		</dependency>
+
+
 	</dependencies>
 
 	<build>

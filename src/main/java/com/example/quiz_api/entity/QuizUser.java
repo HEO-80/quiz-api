@@ -6,7 +6,7 @@ import java.time.LocalDateTime;
 import lombok.AllArgsConstructor;
 import lombok.NoArgsConstructor;
 
-
+// Test realizado por el usuario
 @Entity
 @Data
 @AllArgsConstructor

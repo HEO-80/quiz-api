@@ -1,6 +1,7 @@
 package com.example.quiz_api.dto;
 
 import lombok.Data;
+import lombok.NonNull;
 
 @Data
 public class UserAnswerDTO {

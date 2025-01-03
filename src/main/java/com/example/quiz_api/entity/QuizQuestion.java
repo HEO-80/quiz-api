@@ -3,6 +3,7 @@ package com.example.quiz_api.entity;
 import jakarta.persistence.*;
 import lombok.Data;
 
+// questions que tiene el test realizado por el usuario
 @Data
 @Entity
 @Table(name = "quiz_questions")
