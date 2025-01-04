@@ -31,6 +31,13 @@ public class QuizUserService {
         return convertToDTO(quizUser);
     }
 
+    /**
+     * Obtiene todos los quizzes realizados por un usuario específico.
+     */
+    public List<QuizUserDTO> getQuizzesByUserId(Long userId) {
+        List<QuizUser> quizzes = quizUserRepository.findByUserId(userId);
+        return quizzes.stream().map(this::convertToDTO).collect(Collectors.toList());
+    }
     public QuizUserDTO createQuiz(QuizUserDTO quizUserDTO) {
         QuizUser quizUser = convertToEntity(quizUserDTO);
         QuizUser savedQuizUser = quizUserRepository.save(quizUser);

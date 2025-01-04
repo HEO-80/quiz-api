@@ -39,6 +39,18 @@ public class QuizUserController {
     }
 
     /**
+     * Obtiene todos los quizzes realizados por un usuario específico.
+     */
+    @GetMapping("/user/{userId}")
+    public ResponseEntity<List<QuizUserDTO>> getQuizzesByUserId(@PathVariable Long userId) {
+        if (userId == null || userId <= 0) {
+            throw new BadRequestException("El ID de usuario es inválido.");
+        }
+        List<QuizUserDTO> quizzes = quizUserService.getQuizzesByUserId(userId);
+        return new ResponseEntity<>(quizzes, HttpStatus.OK);
+    }
+
+    /**
      * Crea un nuevo registro de QuizUser.
      */
     @PostMapping
