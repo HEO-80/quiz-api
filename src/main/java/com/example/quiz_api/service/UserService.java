@@ -46,12 +46,22 @@ public class UserService {
                 .orElseThrow(() -> new ResourceNotFoundException("User not found with username " + username));
     }
     /**
-     * Crear un nuevo usuario.
+     * Crear un nuevo usuario después de validar que el nombre de usuario y el email son únicos.
      *
      * @param userDTO Datos del usuario.
      * @return UserDTO creado.
      */
     public UserDTO createUser(UserDTO userDTO) {
+        // Verificar si el nombre de usuario ya existe
+        if(userRepository.existsByUsername(userDTO.getUsername())) {
+            throw new UserAlreadyExistsException("Username is already taken.");
+        }
+
+        // Verificar si el correo electrónico ya está registrado
+        if(userRepository.existsByEmail(userDTO.getEmail())) {
+            throw new UserAlreadyExistsException("Email is already in use.");
+        }
+
         User user = convertToEntity(userDTO);
         User savedUser = userRepository.save(user);
         return convertToDTO(savedUser);
@@ -67,6 +77,16 @@ public class UserService {
     public UserDTO updateUser(Long id, UserDTO userDTO) {
         User user = userRepository.findById(id)
                 .orElseThrow(() -> new ResourceNotFoundException("User not found with id " + id));
+
+        // Verificar si el nuevo nombre de usuario está disponible
+        if(!user.getUsername().equals(userDTO.getUsername()) && userRepository.existsByUsername(userDTO.getUsername())) {
+            throw new UserAlreadyExistsException("Username is already taken.");
+        }
+
+        // Verificar si el nuevo correo electrónico está disponible
+        if(!user.getEmail().equals(userDTO.getEmail()) && userRepository.existsByEmail(userDTO.getEmail())) {
+            throw new UserAlreadyExistsException("Email is already in use.");
+        }
 
         user.setUsername(userDTO.getUsername());
         user.setEmail(userDTO.getEmail());
