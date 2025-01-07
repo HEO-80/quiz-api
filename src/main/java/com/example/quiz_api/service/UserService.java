@@ -1,9 +1,13 @@
 package com.example.quiz_api.service;
 
+import com.example.quiz_api.controller.LoginController;
 import com.example.quiz_api.dto.UserDTO;
 import com.example.quiz_api.entity.User;
 import com.example.quiz_api.exception.ResourceNotFoundException;
+import com.example.quiz_api.exception.UserAlreadyExistsException;
 import com.example.quiz_api.repository.UserRepository;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -15,6 +19,10 @@ import java.util.stream.Collectors;
 public class UserService {
     @Autowired
     private UserRepository userRepository;
+    private static final Logger logger = LoggerFactory.getLogger(LoginController.class);
+
+//    @Autowired
+//    private BCryptPasswordEncoder passwordEncoder;
 
     /**
      * Obtener todos los usuarios en formato DTO.
@@ -52,18 +60,31 @@ public class UserService {
      * @return UserDTO creado.
      */
     public UserDTO createUser(UserDTO userDTO) {
+        logger.info("Intentando crear un nuevo usuario: {}", userDTO.getUsername());
+
         // Verificar si el nombre de usuario ya existe
         if(userRepository.existsByUsername(userDTO.getUsername())) {
-            throw new UserAlreadyExistsException("Username is already taken.");
+            logger.warn("El nombre de usuario {} ya está en uso.", userDTO.getUsername());
+            throw new UserAlreadyExistsException("El nombre de usuario " + userDTO.getUsername() + " ya está en uso.");
+
         }
+
 
         // Verificar si el correo electrónico ya está registrado
         if(userRepository.existsByEmail(userDTO.getEmail())) {
-            throw new UserAlreadyExistsException("Email is already in use.");
+            logger.warn("El correo electrónico {} ya está en uso.", userDTO.getEmail());
+            throw new UserAlreadyExistsException("El correo electrónico " + userDTO.getEmail() + " ya está registrado.");
         }
 
         User user = convertToEntity(userDTO);
+        logger.debug("Entidad de usuario antes de guardar: {}", user);
+
         User savedUser = userRepository.save(user);
+        logger.info("Usuario creado con éxito con ID: {}", savedUser.getId());
+
+
+//        User user = convertToEntity(userDTO);
+//        User savedUser = userRepository.save(user);
         return convertToDTO(savedUser);
     }
 
