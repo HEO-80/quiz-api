@@ -1,6 +1,7 @@
 package com.example.quiz_api.controller;
 
 import com.example.quiz_api.dto.UserDTO;
+import com.example.quiz_api.dto.UserResponseDTO;
 import com.example.quiz_api.service.UserService;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -29,9 +30,9 @@ public class UserController {
      * @return Lista de usuarios en formato JSON.
      */
     @GetMapping
-    public ResponseEntity<List<UserDTO>> getAllUsers() {
+    public ResponseEntity<List<UserResponseDTO>> getAllUsers() {
         logger.info("Solicitud para obtener todos los usuarios.");
-        List<UserDTO> users = userService.getAllUsers();
+        List<UserResponseDTO> users = userService.getAllUsers();
         logger.info("Usuarios recuperados: {}", users.size());
         return new ResponseEntity<>(users, HttpStatus.OK);
     }
@@ -43,9 +44,9 @@ public class UserController {
      * @return Detalles del usuario en formato JSON.
      */
     @GetMapping("/{id}")
-    public ResponseEntity<UserDTO> getUserById(@PathVariable Long id) {
+    public ResponseEntity<UserResponseDTO> getUserById(@PathVariable Long id) {
         logger.info("Solicitud para obtener usuario con ID: {}", id);
-        UserDTO user = userService.getUserById(id);
+        UserResponseDTO user = userService.getUserById(id);
         if (user != null) {
             logger.info("Usuario encontrado: {}", user.getUsername());
             return new ResponseEntity<>(user, HttpStatus.OK);
@@ -62,9 +63,9 @@ public class UserController {
      * @return Usuario creado en formato JSON.
      */
     @PostMapping
-    public ResponseEntity<UserDTO> createUser(@RequestBody UserDTO userDTO) {
+    public ResponseEntity<UserResponseDTO> createUser(@RequestBody UserDTO userDTO) {
         logger.info("Solicitud para crear un nuevo usuario: {}", userDTO.getUsername());
-        UserDTO createdUser = userService.createUser(userDTO);
+        UserResponseDTO createdUser = userService.createUser(userDTO);
         logger.info("Usuario creado con éxito: {}", createdUser.getUsername());
         return new ResponseEntity<>(createdUser, HttpStatus.CREATED);
     }
@@ -77,9 +78,9 @@ public class UserController {
      * @return Usuario actualizado en formato JSON.
      */
     @PutMapping("/{id}")
-    public ResponseEntity<UserDTO> updateUser(@PathVariable Long id, @RequestBody UserDTO userDTO) {
+    public ResponseEntity<UserResponseDTO> updateUser(@PathVariable Long id, @RequestBody UserDTO userDTO) {
         logger.info("Solicitud para actualizar usuario con ID: {}", id);
-        UserDTO updatedUser = userService.updateUser(id, userDTO);
+        UserResponseDTO updatedUser = userService.updateUser(id, userDTO);
         logger.info("Usuario actualizado con éxito: {}", updatedUser.getUsername());
         return ResponseEntity.ok(updatedUser);
     }

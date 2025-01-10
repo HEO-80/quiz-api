@@ -9,7 +9,10 @@ import org.springframework.web.bind.annotation.ControllerAdvice;
 import org.springframework.web.bind.annotation.ExceptionHandler;
 import org.springframework.web.context.request.WebRequest;
 
+import java.time.LocalDateTime;
 import java.time.format.DateTimeParseException;
+import java.util.HashMap;
+import java.util.Map;
 
 @ControllerAdvice
 public class GlobalExceptionHandler {
@@ -18,12 +21,19 @@ public class GlobalExceptionHandler {
     @ExceptionHandler(ResourceNotFoundException.class)
     public ResponseEntity<String> handleResourceNotFoundException(ResourceNotFoundException ex) {
         logger.error("ResourceNotFoundException: {}", ex.getMessage());
+        Map<String, Object> error = new HashMap<>();
+        error.put("timestamp", LocalDateTime.now());
+        error.put("message", ex.getMessage());
+//        return new ResponseEntity<>(error, HttpStatus.NOT_FOUND);
         return ResponseEntity.status(HttpStatus.NOT_FOUND).body(ex.getMessage());
     }
 
     @ExceptionHandler(UserAlreadyExistsException.class)
     public ResponseEntity<String> handleUserAlreadyExists(UserAlreadyExistsException ex) {
         logger.error("UserAlreadyExistsException: {}", ex.getMessage());
+        Map<String, Object> error = new HashMap<>();
+        error.put("timestamp", LocalDateTime.now());
+        error.put("message", ex.getMessage());
         return new ResponseEntity<>(ex.getMessage(), HttpStatus.CONFLICT); // 409 Conflict
     }
 
