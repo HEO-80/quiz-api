@@ -85,8 +85,9 @@ public class WebSecurityConfig {
 
                 // (4) Autorizaciones
                 .authorizeHttpRequests(auth -> auth
-                        .requestMatchers("/api/login/**", "/api/auth/**","/api/users/**")
-                        .permitAll() // Endpoints libres
+                        .requestMatchers("/api/login/**","/api/users/**", "/api/auth/**", "/api/register", "/swagger-ui/**", "/v3/api-docs/**",
+                                "/api/quiz-users/**", "/api/quiz-questions/**" ,"/api/user-answers/**")
+                        .permitAll() // Permitir estos endpoints sin autenticación
                         .anyRequest().authenticated() // El resto requiere auth
                 );
 
