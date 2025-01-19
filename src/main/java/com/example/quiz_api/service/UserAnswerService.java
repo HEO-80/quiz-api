@@ -106,26 +106,10 @@ public class UserAnswerService {
             dto.setUserId(userAnswer.getUser().getId());
         }
 
-//        dto.setQuizId(userAnswer.getQuiz().getId());
-//        dto.setQuestionId(userAnswer.getQuestion().getId());
-//        dto.setUserId(userAnswer.getUser().getId());
-
         dto.setUserAnswer(userAnswer.getUserAnswer());
         dto.setIsCorrect(userAnswer.getIsCorrect());
         return dto;
     }
-
-
-//    private UserAnswerDTO convertToDTO(UserAnswer userAnswer) {
-//        UserAnswerDTO dto = new UserAnswerDTO();
-//        dto.setId(userAnswer.getId());
-//        dto.setQuizId(userAnswer.getQuiz().getId()); // Verifica el acceso correcto a las relaciones
-//        dto.setQuestionId(userAnswer.getQuestion().getId());
-//        dto.setUserId(userAnswer.getUser().getId());
-//        dto.setUserAnswer(userAnswer.getUserAnswer());
-//        dto.setIsCorrect(userAnswer.getIsCorrect());
-//        return dto;
-//    }
 
     private UserAnswer convertToEntity(UserAnswerDTO dto) {
         UserAnswer userAnswer = new UserAnswer();

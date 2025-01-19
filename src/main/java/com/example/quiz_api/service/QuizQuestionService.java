@@ -43,16 +43,6 @@ public class QuizQuestionService {
         return convertToDTO(savedQuizQuestion);
     }
 
-//    public QuizQuestionDTO createQuizQuestion(QuizQuestionDTO quizQuestionDTO) {
-//        QuizQuestion quizQuestion = convertToEntity(quizQuestionDTO);
-//
-//        // Asegúrate de que el `id` no se asigna en `convertToEntity` si usas el trigger
-//        quizQuestion.setId(null); // Garantiza que el trigger o @GeneratedValue asigne el `id`
-//
-//        QuizQuestion savedQuizQuestion = quizQuestionRepository.save(quizQuestion);
-//        return convertToDTO(savedQuizQuestion);
-//    }
-
     public QuizQuestionDTO updateQuizQuestion(Long id, QuizQuestionDTO quizQuestionDTO) {
         QuizQuestion quizQuestion = quizQuestionRepository.findById(id)
                 .orElseThrow(() -> new ResourceNotFoundException("QuizQuestion not found with id " + id));

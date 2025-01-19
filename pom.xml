@@ -88,6 +88,33 @@
 			<version>19.8.0.0</version>
 		</dependency>
 
+		<!-- Dependencia de ojdbc8 -->
+		<dependency>
+			<groupId>com.oracle.database.jdbc</groupId>
+			<artifactId>ojdbc8</artifactId>
+			<version>19.8.0.0</version>
+		</dependency>
+
+		<!-- Dependencia de oraclepki -->
+<!--		<dependency>-->
+<!--			<groupId>com.oracle.database.jdbc</groupId>-->
+<!--			<artifactId>oraclepki</artifactId>-->
+<!--			<version>19.8.0.0</version>-->
+<!--		</dependency>-->
+
+<!--		&lt;!&ndash; Dependencia de osdt_core &ndash;&gt;-->
+<!--		<dependency>-->
+<!--			<groupId>com.oracle.database.jdbc</groupId>-->
+<!--			<artifactId>osdt_core</artifactId>-->
+<!--			<version>19.8.0.0</version>-->
+<!--		</dependency>-->
+
+<!--		&lt;!&ndash; Dependencia de osdt_cert &ndash;&gt;-->
+<!--		<dependency>-->
+<!--			<groupId>com.oracle.database.jdbc</groupId>-->
+<!--			<artifactId>osdt_cert</artifactId>-->
+<!--			<version>19.8.0.0</version>-->
+<!--		</dependency>-->
 		<!-- 3) DevTools -->
 		<dependency>
 			<groupId>org.springframework.boot</groupId>

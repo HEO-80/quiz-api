@@ -34,26 +34,6 @@ public class LoginController {
 
         logger.info("Intento de inicio de sesión para usuario: {}", username);
 
-//        // Validación manual de los campos necesarios
-//        if (username == null || username.trim().isEmpty() ||
-//                password == null || password.trim().isEmpty()) {
-//            logger.warn("Parámetros inválidos: username o password vacío.");
-//            Map<String, String> errorResponse = new HashMap<>();
-//            errorResponse.put("message", "Username y password son obligatorios.");
-//            return ResponseEntity.badRequest().body(errorResponse);
-//        }
-
-//        if (username == null || username.isEmpty() || password == null || password.isEmpty()) {
-//            logger.warn("Parámetros inválidos: username o password vacío.");
-//            return ResponseEntity.badRequest().body("Username y password son obligatorios.");
-//        }
-
-        // Valida credenciales
-//        boolean isAuthenticated = userService.validateUser(username, password);
-//        if (isAuthenticated) {
-//            logger.info("Usuario autenticado: {}", username);
-//            Long userId = userService.getUserIdByUsername(username);
-
             // (1) Verificar credenciales
             boolean isValid = userService.validateUser(username, password);
             if (!isValid) {
@@ -89,12 +69,6 @@ public class LoginController {
             loginResponse.setUsername(username);
             loginResponse.setUserId(userId); // Devuelve el ID del usuario
             loginResponse.setAccessToken(token);
-
-//            Map<String, Object> response = new HashMap<>();
-//            response.put("message", "Inicio de sesión exitoso");
-//            response.put("username", username);
-//            response.put("userId", userService.getUserIdByUsername(username)); // Devuelve el ID del usuario
-
 
             // Retornar
             return ResponseEntity.ok(loginResponse);
