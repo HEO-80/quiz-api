@@ -23,6 +23,7 @@
 	<description>quiz-api project for Spring Boot</description>
 
 	<properties>
+		<java.version>17</java.version>
 		<maven.compiler.source>17</maven.compiler.source>
 		<maven.compiler.target>17</maven.compiler.target>
 		<maven.compiler.release>17</maven.compiler.release>
@@ -79,13 +80,6 @@
 			<groupId>jakarta.validation</groupId>
 			<artifactId>jakarta.validation-api</artifactId>
 			<version>3.1.0</version>
-		</dependency>
-
-		<!-- Oracle JDBC driver -->
-		<dependency>
-			<groupId>com.oracle.database.jdbc</groupId>
-			<artifactId>ojdbc8</artifactId>
-			<version>19.8.0.0</version>
 		</dependency>
 
 		<!-- Dependencia de ojdbc8 -->
