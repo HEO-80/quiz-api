@@ -39,12 +39,6 @@ public class UserAnswerService {
                 .collect(Collectors.toList());
     }
 
-//    public List<UserAnswerDTO> getAllUserAnswers() {
-//        return userAnswerRepository.findAll()
-//                .stream()
-//                .map(this::convertToDTO)
-//                .collect(Collectors.toList());
-//    }
 
     public UserAnswerDTO getUserAnswerById(Long id) {
         UserAnswer userAnswer = userAnswerRepository.findById(id)

@@ -3,6 +3,9 @@ package com.example.quiz_api.util;
 import java.util.Base64;
 import java.security.SecureRandom;
 
+/**
+ * Para generar código secreto en base64
+ */
 public class SecretGenerator {
     public static void main(String[] args) {
         byte[] secretBytes = new byte[32]; // 256 bits
