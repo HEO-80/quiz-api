@@ -38,8 +38,6 @@ public class JwtUtil {
         Date now = new Date();
         Date expiryDate = new Date(now.getTime() + jwtConfig.getExpiration());
 
-        // 2) Depende de cómo este configurada la 'secret' en tu `application.properties`
-//        Key signingKey = getSigningKey(jwtConfig.getSecret());
         Key key = getSigningKey(jwtConfig.getSecret());
 
         return Jwts.builder()

@@ -33,5 +33,4 @@ import lombok.Data;
         @Column(nullable = false)
         private String option4;
 
-        // Getters y setters
     }
